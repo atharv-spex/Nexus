@@ -11,15 +11,16 @@ cursor.execute("""
 CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT UNIQUE NOT NULL,
+    email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL
 )
 """)
 
 # Insert a default user
 cursor.execute("""
-INSERT OR IGNORE INTO users (username, password)
-VALUES (?, ?)
-""", ("admin", "admin123"))
+INSERT OR IGNORE INTO users (username, email, password)
+VALUES (?, ?, ?)
+""", ("admin", "admin@nexus.com", "admin123"))
 
 # Save changes
 conn.commit()
